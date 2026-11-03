@@ -1,0 +1,94 @@
+{
+  "version": "final-study-1.0",
+  "source_bank_sha256": "c08d24e61148fce59c74804fe06b8aa9840333864a7f19a5d3ba6ca0f3f90cdb",
+  "reference_sha256": "38e48999f300bf6cc30c0b7e6bc5f91a8c7c64b7b86728b6e98d97c03f6e0395",
+  "spectra": 12,
+  "candidates": 9,
+  "anchor_prediction": "If the main failure mechanism is that the verifier replaces exact checking with an approximate consistency argument in which the outer eigenvalues are allowed to drift, fixing the exact minimum and maximum eigenvalues should cause a large recovery in discriminability. We predict >90% detection of incorrect claims and <5% false rejection of correct controls.",
+  "alternative_interpretation": "Outer anchors plus the supplied Tr(H),Tr(H^2) determine the gap algebraically. Rescue does not uniquely establish an internal drifting-anchor strategy.",
+  "hidden_analysis_identity": "gap^2=2*(Tr(H^2)-lambda_min^2-lambda_max^2)-(Tr(H)-lambda_min-lambda_max)^2; NEVER sent to verifier.",
+  "profiles": [
+    {
+      "id": "spark_low",
+      "label": "Spark 1.3 Contributor · low",
+      "model": "muse-spark-1.3-contributor",
+      "effort": "low",
+      "trials": 20,
+      "caps": [
+        16384
+      ],
+      "budget": 4,
+      "input_price": 0.1,
+      "cached_price": 0.002,
+      "output_price": 0.2,
+      "provider": "meta"
+    },
+    {
+      "id": "spark_max",
+      "label": "Spark 1.3 Standard · max",
+      "model": "muse-spark-1.3",
+      "effort": "max",
+      "trials": 5,
+      "caps": [
+        8192,
+        16384
+      ],
+      "budget": 20,
+      "input_price": 1.25,
+      "cached_price": 0.15,
+      "output_price": 4.25,
+      "provider": "meta"
+    },
+    {
+      "id": "wonder_max",
+      "label": "Muse Wonder · max",
+      "model": "muse-wonder-1.0",
+      "effort": "max",
+      "trials": 5,
+      "caps": [
+        8192,
+        16384
+      ],
+      "budget": 45,
+      "input_price": 4.0,
+      "cached_price": 0.2,
+      "output_price": 20.0,
+      "provider": "meta"
+    },
+    {
+      "id": "spark_open",
+      "label": "Muse Spark Open · xhigh",
+      "model": "accounts/fireworks/models/muse-spark-open",
+      "effort": "xhigh",
+      "trials": 5,
+      "caps": [
+        8192,
+        16384
+      ],
+      "budget": 6,
+      "input_price": null,
+      "cached_price": null,
+      "output_price": null,
+      "provider": "fireworks",
+      "base_url": "https://api.fireworks.ai/inference/v1"
+    }
+  ],
+  "repeat_policy": "budget-fit",
+  "software_test_repeat_override": null,
+  "pilot_policy": "Fixed spectra 001 and 007, lower-1% and unchanged correct claims, both conditions; pilots excluded from science. Escalate token cap on length failures only.",
+  "budget_policy": "Pilot usage projected to all fixed cells with 1.5x margin. Target five repeats; budget-fit may choose three or one, using cost only. Part A remains twenty.",
+  "reference_policy": "Reuse all saved twenty-repeat low baseline/certificate verdicts; additionally report fixed ordinals 0-4 for equal-repeat sensitivity.",
+  "explanation_policy": "Reuse frozen lexical rules unchanged; exploratory only.",
+  "docs": {
+    "checked": "2026-11-01",
+    "reasoning": "https://dev.meta.ai/docs/reasoning",
+    "models": "https://dev.meta.ai/docs/models",
+    "pricing": "https://dev.meta.ai/docs/pricing-rate-limits",
+    "schema": "https://dev.meta.ai/docs/api-reference/chat-completions/schemas",
+    "open": "https://dev.meta.ai/docs/muse-spark-open/deploy"
+  },
+  "profiles_execution": "Anchor low, Standard Spark max, Wonder max, optional configured Fireworks Spark Open xhigh; no additional experiments.",
+  "primary": "Hit rate, false alarms, corrected d-prime and confidence distributions; effects paired by spectrum and candidate; no five-trial calibration claims.",
+  "initial_total_budget": 75.0,
+  "created_at": "2026-11-01T16:19:04.295785+00:00"
+}

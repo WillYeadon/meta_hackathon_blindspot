@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#c6cbd0">
+  <title>Blindspot · Stress-test the scientific verifier</title>
+  <meta name="description" content="A stress-testing harness for AI scientific verifiers, designed by an assistant professor of physics. Exact claims, controlled basis changes and trusted checkpoints. Explore the completed Meta model case study.">
+  <link rel="icon" type="image/svg+xml" href="/static/mark.svg?v=2">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+  <script src="/static/representation.js" defer></script>
+  <script src="/static/final-panel.js" defer></script>
+  <script src="/static/demo.js" defer></script>
+  <script src="/static/screen-content.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Blindspot home"><img src="/static/mark.svg" width="32" height="32" alt="">blindspot<span class="beta">VERIFIER LAB</span></a>
+    <nav aria-label="Main navigation"><a href="#verifier-demo" class="nav-current">Guided stress test</a><a href="#research-provenance" id="provenance-link">Research provenance</a><button class="text-button" id="method-button">How it works</button><button class="text-button" id="export-screen-content" disabled>Screen content ↓</button></nav>
+  </header>
+  <main>
+    <section class="intro demo-intro">
+      <div><div class="eyebrow">A PHYSICIST’S STRESS TEST FOR AI SCIENTIFIC VERIFIERS</div><h1>Before you trust <em>PASS.</em></h1>
+        <p>AI systems are being asked to check calculations produced by people and other AIs. Blindspot tests the checker on physics claims whose truth is known exactly.</p><p class="hero-definition">A reusable evaluation harness. A completed physics case study.<br>Explore what changes the reliability of a Meta verifier.</p></div>
+      <div class="hero-levels" aria-hidden="true" title="Spectrum invariant under a basis change"><span></span><span></span><span></span><span></span><i>Δ</i></div>
+    </section>
+    <ol class="workflow" aria-label="Who uses Blindspot and why">
+      <li><span>01</span><div><strong>Choose a verifier</strong><p>You are building an AI scientific reviewer. Is your intended model good enough?</p></div></li>
+      <li><span>02</span><div><strong>Stress-test the checker</strong><p>Use known right and wrong claims. Change the representation while preserving the physics.</p></div></li>
+      <li><span>03</span><div><strong>Make a deployment decision</strong><p>Assess missed errors, false alarms, missing answers and cost before relying on PASS.</p></div></li>
+    </ol>
+    <div id="boot-error" class="error-panel" hidden></div>
+    <section id="verifier-demo" class="guided-demo" aria-label="Guided saved-results stress test"><p class="scope-note" role="status">Loading the completed physics case study…</p></section>
+    <section class="build-story"><div><div class="eyebrow">DOMAIN EXPERTISE AND CODING AGENTS</div><h2>Designed by a physicist, implemented with coding agents</h2></div><p>I’m Will Yeadon, an assistant professor of physics interested in reliable AI for scientific reasoning. I designed the experiments, requirements for exact ground truth and interpretation; coding agents generated and iterated the implementation during the hackathon.</p></section>
+    <section class="current-scope"><h2>Current scope</h2><p>The current build runs the included physics test suites, lets users inspect saved verifier behaviour, compare tested configurations and reproduce the analysis. Adding a new scientific domain requires implementing a new test suite and an independent correctness oracle. Automatic verifier routing is a future extension.</p><details><summary>How to add another scientific stress test</summary><ol><li><strong>Choose a claim with an independent oracle.</strong> Know whether it is correct without trusting the AI reviewer.</li><li><strong>Choose a truth-preserving transformation.</strong> Change the representation while preserving the target physical fact.</li><li><strong>Create matched correct and incorrect claims.</strong> Hold irrelevant details fixed wherever possible.</li><li><strong>Run the verifier across equivalent cases.</strong> Measure wrong PASSes, false alarms, missing answers and cost.</li><li><strong>Choose the verifier configuration.</strong> Assess whether the cheap checker is adequate, benefits from trusted information or needs escalation.</li></ol><p><strong>Implemented spectral test:</strong> exact basis transformation → spectrum and energy splitting stay fixed → exact linear algebra supplies the oracle.</p><p><strong>Hypothetical relativity extension:</strong> describe the same spacetime in different coordinates, choose a coordinate-invariant physical quantity at corresponding physical points, and check it with an independent symbolic or numerical relativity calculation. Metric components themselves need not stay the same.</p><p>This relativity example is an extension pattern. It is not implemented or experimentally tested in this release.</p></details></section>
+    <details id="research-provenance" class="provenance-panel">
+      <summary><span class="eyebrow">STUDY RECORDS / REPRODUCIBILITY</span><strong>Full measurements and reproducibility</strong><span class="provenance-hint">Optional depth after the guided demo</span></summary>
+      <div class="provenance-content">
+        <p class="scope-note">The guided path above uses completed live measurements. Below are the full representation tables, final statistics and reproducibility notes. The included measurements are frozen.</p>
+        <div class="provenance-links"><a href="/research/README.md">Project guide ↗</a><a href="/research/FINAL_FINDINGS.md">Final findings ↗</a><a href="/research/REPRODUCIBILITY.md">Reproduce the analysis ↗</a><a href="/research/COST_SUMMARY.md">Cost accounting ↗</a></div>
+        <details id="full-representation"><summary>All twelve spectra and six representations</summary><section id="representation-study" class="study-panel" aria-label="Full representation experiment" hidden></section></details>
+        <details id="full-final-panel"><summary>Full checkpoint and Meta verifier statistics</summary><section id="final-study" class="study-panel" aria-label="Trusted checkpoint and Meta verifier comparison" hidden></section></details>
+
+      </div>
+    </details>
+  </main>
+  <footer class="site-footer"><span>Blindspot · Stress-test the checker before trusting its PASS.</span><span>Saved results · Exact ground truth · No API key needed for the demo</span></footer>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <dialog id="method-dialog"><div class="dialog-heading"><div><div class="eyebrow">THE EVALUATION HARNESS</div><h2>Known physics. Tested reviewer.</h2></div><button id="close-method" class="icon-button" aria-label="Close">×</button></div><ol class="method-steps"><li><strong>Start with an exact oracle.</strong> Generate a spectrum and verify all matrix identities with rational arithmetic.</li><li><strong>Hold truth fixed.</strong> Present the same right or wrong gap claim through different exact bases.</li><li><strong>Measure verdicts.</strong> Record missed errors, rejected correct controls, unavailable responses and costs. Technical pilots are separate.</li><li><strong>Test a remedy.</strong> Supply trusted checkpoints or compare a stronger verifier on the same cases.</li></ol><p>The recorded prompts used coupled modes. A four-level Hamiltonian is the physical interpretation of that exact spectral problem. This is calibration of the AI reviewer; the exact eigensolver already supplies the answer.</p><p class="method-caveat">The twelve held-out spectra belong to an adaptively discovered family. Higher-model settings have one attempt per fixed cell. These results do not certify general scientific-review competence or reveal internal model mechanisms.</p><p class="dialog-foot">Complete statistical tables and exact records remain under Study records. Opening the guided demo makes no model calls.</p></dialog>
+</body>
+</html>

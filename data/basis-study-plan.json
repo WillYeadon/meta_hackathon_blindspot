@@ -1,0 +1,33 @@
+{
+  "version": "basis-1.0",
+  "seed": 20261101,
+  "bank_hash": "b6f9f7dc44063b84f50a720b313c3bd723f853403fa588a1140bff03c2b97063",
+  "spectra": 12,
+  "levels": [
+    "Canonical diagonal",
+    "Permuted diagonal",
+    "One rational rotation",
+    "Three rational rotations",
+    "Simple Hadamard basis",
+    "General rational basis"
+  ],
+  "trials_per_cell": 20,
+  "model": "muse-spark-1.3-contributor",
+  "temperature": 1.0,
+  "reasoning_effort": "low",
+  "max_completion_tokens": 16384,
+  "verifier_protocol": "truth",
+  "forecasts": false,
+  "certificate_rule": "Every level-5 spectrum; same H, claim, and sampling. Only certificate content differs.",
+  "planned_sweep_calls": 12960,
+  "planned_certificate_calls": 2160,
+  "primary": "Hit rate, false-alarm rate and loglinear-corrected d-prime by named level; 95% intervals resample whole spectra.",
+  "paired": "Certificate minus level-5 baseline; pair by spectrum and mutation, not by trial ordinal.",
+  "explanation_analysis": "Exploratory lexical flags plus an explicit numerical-calculation review column; not used for primary results.",
+  "ordering": "Deterministically shuffled within each experiment; sweep precedes certificate, so timing is a possible confound.",
+  "limits": {
+    "sweep_usd": 15,
+    "certificate_usd": 5,
+    "max_calls_each": 15000
+  }
+}

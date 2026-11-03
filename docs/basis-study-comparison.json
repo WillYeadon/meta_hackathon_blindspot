@@ -1,0 +1,174 @@
+{
+  "groups": [
+    {
+      "level": 0,
+      "condition": "sweep",
+      "label": "Canonical diagonal",
+      "usable": 2159,
+      "failed": 1,
+      "errors": 1679,
+      "controls": 480,
+      "hits": 1679,
+      "false_alarms": 0,
+      "hit_rate": 1.0,
+      "false_alarm_rate": 0.0,
+      "d_prime": 6.512483181426002,
+      "pass_likelihood_ratio": 3356.5072765072887,
+      "true_accept_confidence": 1.0,
+      "false_accept_confidence": null,
+      "d_prime_cluster_95": [
+        6.512160265171061,
+        6.512644485455663
+      ]
+    },
+    {
+      "level": 1,
+      "condition": "sweep",
+      "label": "Permuted diagonal",
+      "usable": 2160,
+      "failed": 0,
+      "errors": 1680,
+      "controls": 480,
+      "hits": 1680,
+      "false_alarms": 0,
+      "hit_rate": 1.0,
+      "false_alarm_rate": 0.0,
+      "d_prime": 6.512644485455663,
+      "pass_likelihood_ratio": 3358.5051975054394,
+      "true_accept_confidence": 1.0,
+      "false_accept_confidence": null,
+      "d_prime_cluster_95": [
+        6.512644485455663,
+        6.512644485455663
+      ]
+    },
+    {
+      "level": 2,
+      "condition": "sweep",
+      "label": "One rational rotation",
+      "usable": 2158,
+      "failed": 2,
+      "errors": 1678,
+      "controls": 480,
+      "hits": 1678,
+      "false_alarms": 2,
+      "hit_rate": 1.0,
+      "false_alarm_rate": 0.004166666666666667,
+      "d_prime": 5.996018305429114,
+      "pass_likelihood_ratio": 3340.54677754736,
+      "true_accept_confidence": 1.0,
+      "false_accept_confidence": null,
+      "d_prime_cluster_95": [
+        5.70955195666437,
+        6.512644485455663
+      ]
+    },
+    {
+      "level": 3,
+      "condition": "sweep",
+      "label": "Three rational rotations",
+      "usable": 1864,
+      "failed": 296,
+      "errors": 1402,
+      "controls": 462,
+      "hits": 1190,
+      "false_alarms": 26,
+      "hit_rate": 0.8487874465049928,
+      "false_alarm_rate": 0.05627705627705628,
+      "d_prime": 2.608599477234228,
+      "pass_likelihood_ratio": 6.224464489899632,
+      "true_accept_confidence": 0.9885802752293578,
+      "false_accept_confidence": 0.918254716981132,
+      "d_prime_cluster_95": [
+        2.259896729018636,
+        3.003895858193906
+      ]
+    },
+    {
+      "level": 4,
+      "condition": "sweep",
+      "label": "Simple Hadamard basis",
+      "usable": 2160,
+      "failed": 0,
+      "errors": 1680,
+      "controls": 480,
+      "hits": 1680,
+      "false_alarms": 0,
+      "hit_rate": 1.0,
+      "false_alarm_rate": 0.0,
+      "d_prime": 6.512644485455663,
+      "pass_likelihood_ratio": 3358.5051975054394,
+      "true_accept_confidence": 1.0,
+      "false_accept_confidence": null,
+      "d_prime_cluster_95": [
+        6.512644485455663,
+        6.512644485455663
+      ]
+    },
+    {
+      "level": 5,
+      "condition": "sweep",
+      "label": "General rational basis",
+      "usable": 2130,
+      "failed": 30,
+      "errors": 1653,
+      "controls": 477,
+      "hits": 776,
+      "false_alarms": 88,
+      "hit_rate": 0.4694494857834241,
+      "false_alarm_rate": 0.18448637316561844,
+      "d_prime": 0.8193175279318318,
+      "pass_likelihood_ratio": 1.5359177007712574,
+      "true_accept_confidence": 0.9411568123393316,
+      "false_accept_confidence": 0.8583922462941848,
+      "d_prime_cluster_95": [
+        0.6445936762698714,
+        0.9788044924398809
+      ]
+    },
+    {
+      "level": 5,
+      "condition": "certificate",
+      "label": "Exact certificate",
+      "usable": 2160,
+      "failed": 0,
+      "errors": 1680,
+      "controls": 480,
+      "hits": 1680,
+      "false_alarms": 2,
+      "hit_rate": 1.0,
+      "false_alarm_rate": 0.004166666666666667,
+      "d_prime": 5.996341016177877,
+      "pass_likelihood_ratio": 3344.525987526228,
+      "true_accept_confidence": 0.9940899581589958,
+      "false_accept_confidence": null,
+      "d_prime_cluster_95": [
+        5.645063531883087,
+        6.512644485455663
+      ]
+    }
+  ],
+  "certificate_effect": {
+    "spectra": 12,
+    "certificate_minus_baseline": {
+      "hit_rate": 0.5305505142165758,
+      "false_alarm_rate": -0.18031970649895177,
+      "d_prime": 5.1770234882460455
+    },
+    "cluster_95": {
+      "hit_rate": [
+        0.5036231884057971,
+        0.5567567567567567
+      ],
+      "false_alarm_rate": [
+        -0.2217747559274756,
+        -0.15056497175141242
+      ],
+      "d_prime": [
+        4.771512066613432,
+        5.826764740033092
+      ]
+    }
+  },
+  "interpretation": "Paired by spectrum. A correct certificate supplies answer-bearing structure; a rescue does not prove the model independently checked every matrix identity."
+}

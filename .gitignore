@@ -1,0 +1,78 @@
+# Credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+.envrc
+*.pem
+*.key
+credentials*.json
+*service-account*.json
+secrets/
+.openai/
+.codex/
+
+# Python environments and generated caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Working ledgers, exports and scratch material
+var/
+private/
+local/
+upload/
+outputs/
+downloads/
+recordings/
+qa-browser/
+library-transfer-*/
+*.zip
+*.sqlite*
+*.db
+*.db-*
+*.log
+*.tmp
+*.bak
+*.mp4
+*.mov
+*.webm
+node_modules/
+
+# Full local accounting/authorisation records; commit the public summary instead
+/data/*-review.zip
+/data/final-panel-results.json
+/data/final-panel-token-extension.json
+
+# Creator's video, submission drafts and old UI snapshots
+/PUBLICATION.md
+/SCREEN_CONTENT.md
+/DEMO_SCRIPT.md
+/SUBMISSION_NOTES.md
+/SUBMISSION_TEXT.md
+/COST_SUMMARY.md
+/docs/archive/
+/docs/earlier-*
+/docs/panel-token-extension.md
+
+# Editor and operating-system state
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+
+# Browser/session artefacts are never source assets
+.cache/
+.history/
+.playwright/
+storageState*.json
+cookies*.json
+session-state*.json

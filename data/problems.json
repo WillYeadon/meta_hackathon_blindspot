@@ -1,0 +1,737 @@
+{
+  "version": "1.0.0",
+  "origin": "Eight original synthetic problems, authored for Blindspot. Old exam archetypes were inspiration only.",
+  "problems": [
+    {
+      "id": "gaussian",
+      "title": "Localising a quantum particle",
+      "topic": "Quantum mechanics",
+      "question": "On the real line, a particle has wavefunction ψ(x) = A exp(−βx²), with β > 0 and real A > 0. Find A, ⟨x⟩, ⟨x²⟩ and the position uncertainty σₓ.",
+      "assumptions": "x ∈ ℝ; β > 0; A is chosen positive. All integrals are over the real line.",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "beta": {
+          "positive": true
+        }
+      },
+      "witnesses": [
+        {
+          "x": "1/3",
+          "beta": "2"
+        },
+        {
+          "x": "-2/5",
+          "beta": "3"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Normalisation integral",
+          "text": "Evaluate the integral of the unnormalised probability density.",
+          "lhs": "∫ exp(−2βx²) dx",
+          "operation": "integration",
+          "expr": "sqrt(2)*sqrt(pi)/(2*sqrt(beta))",
+          "display_ast": "Mul(Rational(1, 2), Pow(Integer(2), Rational(1, 2)), Pow(pi, Rational(1, 2)), Pow(Symbol('beta', positive=True), Rational(-1, 2)))",
+          "latex": "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2 \\sqrt{\\beta}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><msqrt><mn>2</mn></msqrt><mo>⁢</mo><msqrt><mi>π</mi></msqrt></mrow><mrow><mn>2</mn><mo>⁢</mo><msqrt><mi>β</mi></msqrt></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Normalisation constant",
+          "text": "Impose unit total probability and choose the positive root.",
+          "lhs": "A",
+          "operation": "algebra",
+          "expr": "2**(1/4)*beta**(1/4)/pi**(1/4)",
+          "display_ast": "Mul(Pow(Integer(2), Rational(1, 4)), Pow(pi, Rational(-1, 4)), Pow(Symbol('beta', positive=True), Rational(1, 4)))",
+          "latex": "\\frac{\\sqrt[4]{2} \\sqrt[4]{\\beta}}{\\sqrt[4]{\\pi}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mroot><mn>2</mn><mn>4</mn></mroot><mo>⁢</mo><mroot><mi>β</mi><mn>4</mn></mroot></mrow><mroot><mi>π</mi><mn>4</mn></mroot></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Mean position",
+          "text": "Integrate x times the normalised density; the integrand is odd.",
+          "lhs": "⟨x⟩",
+          "operation": "integration",
+          "expr": "0",
+          "display_ast": "Integer(0)",
+          "latex": "0",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mn>0</mn></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 4,
+          "label": "Second moment",
+          "text": "Integrate x² times the normalised probability density.",
+          "lhs": "⟨x²⟩",
+          "operation": "integration",
+          "expr": "1/(4*beta)",
+          "display_ast": "Mul(Rational(1, 4), Pow(Symbol('beta', positive=True), Integer(-1)))",
+          "latex": "\\frac{1}{4 \\beta}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mn>1</mn><mrow><mn>4</mn><mo>⁢</mo><mi>β</mi></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Position uncertainty",
+          "text": "Take the square root of the variance ⟨x²⟩ − ⟨x⟩².",
+          "lhs": "σₓ",
+          "operation": "algebra",
+          "expr": "1/(2*sqrt(beta))",
+          "display_ast": "Mul(Rational(1, 2), Pow(Symbol('beta', positive=True), Rational(-1, 2)))",
+          "latex": "\\frac{1}{2 \\sqrt{\\beta}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mn>1</mn><mrow><mn>2</mn><mo>⁢</mo><msqrt><mi>β</mi></msqrt></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "nonlinear-ode",
+      "title": "A nonlinear initial-value problem",
+      "topic": "Mathematical physics",
+      "question": "Solve dy/dx = (3x² + 2x)y² with y(0) = 1, on −1/4 < x < 1/4. Use separation of variables and give the branch satisfying the initial condition.",
+      "assumptions": "−1/4 < x < 1/4; the selected solution is positive and finite. C is a real integration constant.",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "positive": true
+        },
+        "C": {
+          "real": true
+        }
+      },
+      "witnesses": [
+        {
+          "x": "1/10",
+          "y": "2",
+          "C": "2"
+        },
+        {
+          "x": "-1/5",
+          "y": "3",
+          "C": "3"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Separate variables",
+          "text": "Divide the differential equation by y² on the positive branch.",
+          "lhs": "y⁻² dy/dx",
+          "operation": "algebra",
+          "expr": "x*(3*x + 2)",
+          "display_ast": "Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Mul(Integer(2), Symbol('x', real=True)))",
+          "latex": "3 x^{2} + 2 x",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mrow><mn>3</mn><mo>⁢</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mrow><mn>2</mn><mo>⁢</mo><mi>x</mi></mrow></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Integrate the left side",
+          "text": "Find an antiderivative with respect to y, with its constant absorbed into C.",
+          "lhs": "∫ y⁻² dy",
+          "operation": "integration",
+          "expr": "-1/y",
+          "display_ast": "Mul(Integer(-1), Pow(Symbol('y', positive=True), Integer(-1)))",
+          "latex": "- \\frac{1}{y}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mfrac><mn>1</mn><mi>y</mi></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Integrate the right side",
+          "text": "Integrate the polynomial in x and introduce the integration constant.",
+          "lhs": "−1/y",
+          "operation": "integration",
+          "expr": "C + x**3 + x**2",
+          "display_ast": "Add(Symbol('C', real=True), Pow(Symbol('x', real=True), Integer(3)), Pow(Symbol('x', real=True), Integer(2)))",
+          "latex": "C + x^{3} + x^{2}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>C</mi><mo>+</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math>",
+          "mutation_scope": "arbitrary_constant_family",
+          "mutation_note": "Error mutations are excluded: changing an arbitrary integration constant can preserve the solution family without being a scalar identity."
+        },
+        {
+          "index": 4,
+          "label": "Apply the initial value",
+          "text": "Substitute x = 0 and y = 1 to fix the constant.",
+          "lhs": "C",
+          "operation": "algebra",
+          "expr": "-1",
+          "display_ast": "Integer(-1)",
+          "latex": "-1",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mn>-1</mn></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Isolate the solution",
+          "text": "Solve for y on the specified interval.",
+          "lhs": "y(x)",
+          "operation": "algebra",
+          "expr": "-1/(x**3 + x**2 - 1)",
+          "display_ast": "Pow(Add(Mul(Integer(-1), Pow(Symbol('x', real=True), Integer(3))), Mul(Integer(-1), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Integer(-1))",
+          "latex": "\\frac{1}{- x^{3} - x^{2} + 1}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mrow><mrow><mo>-</mo><msup><mi>x</mi><mn>3</mn></msup></mrow><mo>-</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow></mfrac></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "euler-cauchy",
+      "title": "Two power-law modes",
+      "topic": "Mathematical physics",
+      "question": "Solve x²y″ − 2xy′ − 4y = 0 for x > 0, with y(1) = 3 and y′(1) = 2. Use a power-law trial solution.",
+      "assumptions": "x > 0; r, C₁ and C₂ are real. The trial function is xʳ.",
+      "symbols": {
+        "x": {
+          "positive": true
+        },
+        "r": {
+          "real": true
+        },
+        "C1": {
+          "real": true
+        },
+        "C2": {
+          "real": true
+        }
+      },
+      "witnesses": [
+        {
+          "x": "2",
+          "r": "2",
+          "C1": "3",
+          "C2": "2"
+        },
+        {
+          "x": "3",
+          "r": "3",
+          "C1": "2",
+          "C2": "5"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Substitute a power law",
+          "text": "Insert y = xʳ into the differential operator and divide by xʳ.",
+          "lhs": "residual / xʳ",
+          "operation": "differentiation",
+          "expr": "r**2 - 3*r - 4",
+          "display_ast": "Add(Pow(Symbol('r', real=True), Integer(2)), Mul(Integer(-1), Integer(3), Symbol('r', real=True)), Integer(-4))",
+          "latex": "r^{2} - 3 r - 4",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>-</mo><mrow><mn>3</mn><mo>⁢</mo><mi>r</mi></mrow><mo>-</mo><mn>4</mn></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Factor the indicial polynomial",
+          "text": "Write the indicial polynomial in factored form; its roots determine the two modes.",
+          "lhs": "r² − 3r − 4",
+          "operation": "algebra",
+          "expr": "(r - 4)*(r + 1)",
+          "display_ast": "Mul(Add(Symbol('r', real=True), Integer(-4)), Add(Symbol('r', real=True), Integer(1)))",
+          "latex": "\\left(r - 4\\right) \\left(r + 1\\right)",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mrow><mo>(</mo><mrow><mi>r</mi><mo>-</mo><mn>4</mn></mrow><mo>)</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mrow><mi>r</mi><mo>+</mo><mn>1</mn></mrow><mo>)</mo></mrow></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Combine the modes",
+          "text": "Use the two distinct roots to form the general solution.",
+          "lhs": "y(x)",
+          "operation": "algebra",
+          "expr": "(C1*x**5 + C2)/x",
+          "display_ast": "Add(Mul(Symbol('C1', real=True), Pow(Symbol('x', positive=True), Integer(4))), Mul(Symbol('C2', real=True), Pow(Symbol('x', positive=True), Integer(-1))))",
+          "latex": "C_{1} x^{4} + \\frac{C_{2}}{x}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mrow><msub><mi>C</mi><mi>1</mi></msub><mo>⁢</mo><msup><mi>x</mi><mn>4</mn></msup></mrow><mo>+</mo><mrow><mfrac><msub><mi>C</mi><mi>2</mi></msub><mi>x</mi></mfrac></mrow></mrow></math>",
+          "mutation_scope": "arbitrary_constant_family",
+          "mutation_note": "Error mutations are excluded: changing an arbitrary integration constant can preserve the solution family without being a scalar identity."
+        },
+        {
+          "index": 4,
+          "label": "Determine the growing mode",
+          "text": "Solve C₁ + C₂ = 3 and 4C₁ − C₂ = 2 for C₁.",
+          "lhs": "C₁",
+          "operation": "algebra",
+          "expr": "1",
+          "display_ast": "Integer(1)",
+          "latex": "1",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mn>1</mn></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Apply both conditions",
+          "text": "Substitute both constants into the general solution.",
+          "lhs": "y(x)",
+          "operation": "algebra",
+          "expr": "(x**5 + 2)/x",
+          "display_ast": "Add(Pow(Symbol('x', positive=True), Integer(4)), Mul(Integer(2), Pow(Symbol('x', positive=True), Integer(-1))))",
+          "latex": "x^{4} + \\frac{2}{x}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mrow><mfrac><mn>2</mn><mi>x</mi></mfrac></mrow></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "viscoelastic",
+      "title": "Driving a viscoelastic solid",
+      "topic": "Condensed matter",
+      "question": "A Kelvin–Voigt solid obeys η de/dt + G e = σ₀ cos(ωt), with G, η, σ₀, ω > 0. After transients have decayed, set e(t) = A cos(ωt) + B sin(ωt). Determine A, B and the steady periodic strain.",
+      "assumptions": "G, η, σ₀ and ω are positive; t, A and B are real. Transients are excluded.",
+      "symbols": {
+        "G": {
+          "positive": true
+        },
+        "eta": {
+          "positive": true
+        },
+        "sigma0": {
+          "positive": true
+        },
+        "omega": {
+          "positive": true
+        },
+        "t": {
+          "real": true
+        },
+        "A": {
+          "real": true
+        },
+        "B": {
+          "real": true
+        }
+      },
+      "witnesses": [
+        {
+          "G": "2",
+          "eta": "3",
+          "sigma0": "5",
+          "omega": "2",
+          "t": "0",
+          "A": "2",
+          "B": "3"
+        },
+        {
+          "G": "3",
+          "eta": "2",
+          "sigma0": "7",
+          "omega": "1",
+          "t": "1",
+          "A": "3",
+          "B": "2"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Cosine balance",
+          "text": "Substitute the strain ansatz and collect the cosine coefficient on the left of the constitutive equation.",
+          "lhs": "cosine coefficient",
+          "operation": "differentiation",
+          "expr": "A*G + B*eta*omega",
+          "display_ast": "Add(Mul(Symbol('A', real=True), Symbol('G', positive=True)), Mul(Symbol('B', real=True), Symbol('eta', positive=True), Symbol('omega', positive=True)))",
+          "latex": "A G + B \\eta \\omega",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mrow><mi>A</mi><mo>⁢</mo><mi>G</mi></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><mi>η</mi><mo>⁢</mo><mi>ω</mi></mrow></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Sine balance",
+          "text": "Collect the sine coefficient on the left of the constitutive equation.",
+          "lhs": "sine coefficient",
+          "operation": "differentiation",
+          "expr": "-A*eta*omega + B*G",
+          "display_ast": "Add(Mul(Integer(-1), Symbol('A', real=True), Symbol('eta', positive=True), Symbol('omega', positive=True)), Mul(Symbol('B', real=True), Symbol('G', positive=True)))",
+          "latex": "- A \\eta \\omega + B G",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mrow><mo>-</mo><mi>A</mi><mo>⁢</mo><mi>η</mi><mo>⁢</mo><mi>ω</mi></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><mi>G</mi></mrow></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "In-phase amplitude",
+          "text": "Match cosine and sine coefficients to σ₀ and zero, then solve for A.",
+          "lhs": "A",
+          "operation": "algebra",
+          "expr": "G*sigma0/(G**2 + eta**2*omega**2)",
+          "display_ast": "Mul(Symbol('G', positive=True), Symbol('sigma0', positive=True), Pow(Add(Pow(Symbol('G', positive=True), Integer(2)), Mul(Pow(Symbol('eta', positive=True), Integer(2)), Pow(Symbol('omega', positive=True), Integer(2)))), Integer(-1)))",
+          "latex": "\\frac{G \\sigma_{0}}{G^{2} + \\eta^{2} \\omega^{2}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mi>G</mi><mo>⁢</mo><msub><mi>σ</mi><mi>0</mi></msub></mrow><mrow><msup><mi>G</mi><mn>2</mn></msup><mo>+</mo><mrow><msup><mi>η</mi><mn>2</mn></msup><mo>⁢</mo><msup><mi>ω</mi><mn>2</mn></msup></mrow></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 4,
+          "label": "Quadrature amplitude",
+          "text": "Solve the same two balance equations for B.",
+          "lhs": "B",
+          "operation": "algebra",
+          "expr": "eta*omega*sigma0/(G**2 + eta**2*omega**2)",
+          "display_ast": "Mul(Symbol('eta', positive=True), Symbol('omega', positive=True), Symbol('sigma0', positive=True), Pow(Add(Pow(Symbol('G', positive=True), Integer(2)), Mul(Pow(Symbol('eta', positive=True), Integer(2)), Pow(Symbol('omega', positive=True), Integer(2)))), Integer(-1)))",
+          "latex": "\\frac{\\eta \\omega \\sigma_{0}}{G^{2} + \\eta^{2} \\omega^{2}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mi>η</mi><mo>⁢</mo><mi>ω</mi><mo>⁢</mo><msub><mi>σ</mi><mi>0</mi></msub></mrow><mrow><msup><mi>G</mi><mn>2</mn></msup><mo>+</mo><mrow><msup><mi>η</mi><mn>2</mn></msup><mo>⁢</mo><msup><mi>ω</mi><mn>2</mn></msup></mrow></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Periodic strain",
+          "text": "Insert both amplitudes into the strain ansatz.",
+          "lhs": "e(t)",
+          "operation": "algebra",
+          "expr": "sigma0*(G*cos(omega*t) + eta*omega*sin(omega*t))/(G**2 + eta**2*omega**2)",
+          "display_ast": "Mul(Symbol('sigma0', positive=True), Pow(Add(Pow(Symbol('G', positive=True), Integer(2)), Mul(Pow(Symbol('eta', positive=True), Integer(2)), Pow(Symbol('omega', positive=True), Integer(2)))), Integer(-1)), Add(Mul(Symbol('G', positive=True), cos(Mul(Symbol('omega', positive=True), Symbol('t', real=True)))), Mul(Symbol('eta', positive=True), Symbol('omega', positive=True), sin(Mul(Symbol('omega', positive=True), Symbol('t', real=True))))))",
+          "latex": "\\frac{\\sigma_{0} \\left(G \\cos{\\left(\\omega t \\right)} + \\eta \\omega \\sin{\\left(\\omega t \\right)}\\right)}{G^{2} + \\eta^{2} \\omega^{2}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><msub><mi>σ</mi><mi>0</mi></msub><mo>⁢</mo><mrow><mo>(</mo><mrow><mrow><mi>G</mi><mo>⁢</mo><mrow><mi>cos</mi><mrow><mo>(</mo><mrow><mi>ω</mi><mo>⁢</mo><mi>t</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>+</mo><mrow><mi>η</mi><mo>⁢</mo><mi>ω</mi><mo>⁢</mo><mrow><mi>sin</mi><mrow><mo>(</mo><mrow><mi>ω</mi><mo>⁢</mo><mi>t</mi></mrow><mo>)</mo></mrow></mrow></mrow></mrow><mo>)</mo></mrow></mrow><mrow><msup><mi>G</mi><mn>2</mn></msup><mo>+</mo><mrow><msup><mi>η</mi><mn>2</mn></msup><mo>⁢</mo><msup><mi>ω</mi><mn>2</mn></msup></mrow></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "radial-mode",
+      "title": "Where is the particle most likely?",
+      "topic": "Quantum mechanics",
+      "question": "A spherically symmetric bound-state radial function is R(r) = N r² exp(−r/(3a)), for r ≥ 0 and a > 0. The angular part has unit norm. Find the most probable radius for a radial measurement. You need not determine N.",
+      "assumptions": "a > 0 and N > 0. The radial density is P(r) = r²|R(r)|². Use r > 0 when differentiating log P.",
+      "symbols": {
+        "r": {
+          "positive": true
+        },
+        "a": {
+          "positive": true
+        }
+      },
+      "witnesses": [
+        {
+          "r": "2",
+          "a": "1"
+        },
+        {
+          "r": "3",
+          "a": "2"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Include the volume factor",
+          "text": "Define q(r) = P(r)/N² and include the radial volume factor.",
+          "lhs": "q(r)",
+          "operation": "algebra",
+          "expr": "r**6*exp(-2*r/(3*a))",
+          "display_ast": "Mul(Pow(Symbol('r', positive=True), Integer(6)), exp(Mul(Integer(-1), Rational(2, 3), Pow(Symbol('a', positive=True), Integer(-1)), Symbol('r', positive=True))))",
+          "latex": "r^{6} e^{- \\frac{2 r}{3 a}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><msup><mi>r</mi><mn>6</mn></msup><msup><mi>ⅇ</mi><mrow><mfrac><mrow><mn>2</mn><mo>⁢</mo><mi>r</mi></mrow><mrow><mn>3</mn><mo>⁢</mo><mi>a</mi></mrow></mfrac></mrow></msup></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Differentiate the log density",
+          "text": "For positive r, use the logarithmic derivative to locate a stationary point.",
+          "lhs": "d(log q)/dr",
+          "operation": "differentiation",
+          "expr": "6/r - 2/(3*a)",
+          "display_ast": "Add(Mul(Integer(6), Pow(Symbol('r', positive=True), Integer(-1))), Mul(Integer(-1), Rational(2, 3), Pow(Symbol('a', positive=True), Integer(-1))))",
+          "latex": "\\frac{6}{r} - \\frac{2}{3 a}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mrow><mfrac><mn>6</mn><mi>r</mi></mfrac></mrow><mo>-</mo><mrow><mfrac><mn>2</mn><mrow><mn>3</mn><mo>⁢</mo><mi>a</mi></mrow></mfrac></mrow></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Locate the stationary point",
+          "text": "Set the logarithmic derivative to zero and solve for r.",
+          "lhs": "r*",
+          "operation": "algebra",
+          "expr": "9*a",
+          "display_ast": "Mul(Integer(9), Symbol('a', positive=True))",
+          "latex": "9 a",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mn>9</mn><mo>⁢</mo><mi>a</mi></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 4,
+          "label": "Check the maximum",
+          "text": "Evaluate the second log derivative at the stationary point. Since q tends to zero at both endpoints and has one positive stationary point, it is the global maximum.",
+          "lhs": "d²(log q)/dr² at r*",
+          "operation": "differentiation",
+          "expr": "-2/(27*a**2)",
+          "display_ast": "Mul(Integer(-1), Rational(2, 27), Pow(Symbol('a', positive=True), Integer(-2)))",
+          "latex": "- \\frac{2}{27 a^{2}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mfrac><mn>2</mn><mrow><mn>27</mn><mo>⁢</mo><msup><mi>a</mi><mn>2</mn></msup></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "angular-momentum",
+      "title": "A cubic angular-momentum state",
+      "topic": "Quantum mechanics",
+      "question": "Let ψ(x,y) = (x − iy)³. Apply L_z = −iℏ(x ∂/∂y − y ∂/∂x) and determine whether ψ is an eigenfunction, and if so its eigenvalue. Normalisation is not required.",
+      "assumptions": "x and y are real Cartesian coordinates; ℏ > 0. The polynomial is an operator test function, not a normalisable state on all space.",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "hbar": {
+          "positive": true
+        }
+      },
+      "witnesses": [
+        {
+          "x": "2",
+          "y": "1",
+          "hbar": "1"
+        },
+        {
+          "x": "1",
+          "y": "3",
+          "hbar": "2"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Differentiate in x",
+          "text": "Differentiate the cubic test function with respect to x.",
+          "lhs": "∂ψ/∂x",
+          "operation": "differentiation",
+          "expr": "3*(x - I*y)**2",
+          "display_ast": "Mul(Integer(3), Pow(Add(Symbol('x', real=True), Mul(Integer(-1), I, Symbol('y', real=True))), Integer(2)))",
+          "latex": "3 \\left(x - i y\\right)^{2}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mn>3</mn><mo>⁢</mo><msup><mrow><mo>(</mo><mrow><mi>x</mi><mo>-</mo><mrow><mi>ⅈ</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo>)</mo></mrow><mn>2</mn></msup></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Differentiate in y",
+          "text": "Differentiate the same test function with respect to y.",
+          "lhs": "∂ψ/∂y",
+          "operation": "differentiation",
+          "expr": "-3*I*(x - I*y)**2",
+          "display_ast": "Mul(Integer(-1), Integer(3), I, Pow(Add(Symbol('x', real=True), Mul(Integer(-1), I, Symbol('y', real=True))), Integer(2)))",
+          "latex": "- 3 i \\left(x - i y\\right)^{2}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mn>3</mn><mo>⁢</mo><mi>ⅈ</mi><mo>⁢</mo><msup><mrow><mo>(</mo><mrow><mi>x</mi><mo>-</mo><mrow><mi>ⅈ</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo>)</mo></mrow><mn>2</mn></msup></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Form the orbital derivative",
+          "text": "Combine the two partial derivatives in the order specified by L_z.",
+          "lhs": "x ∂ψ/∂y − y ∂ψ/∂x",
+          "operation": "algebra",
+          "expr": "-3*I*(x - I*y)**3",
+          "display_ast": "Mul(Integer(-1), Integer(3), I, Pow(Add(Symbol('x', real=True), Mul(Integer(-1), I, Symbol('y', real=True))), Integer(3)))",
+          "latex": "- 3 i \\left(x - i y\\right)^{3}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mn>3</mn><mo>⁢</mo><mi>ⅈ</mi><mo>⁢</mo><msup><mrow><mo>(</mo><mrow><mi>x</mi><mo>-</mo><mrow><mi>ⅈ</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo>)</mo></mrow><mn>3</mn></msup></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 4,
+          "label": "Apply the operator prefactor",
+          "text": "Multiply the orbital derivative by −iℏ.",
+          "lhs": "L_z ψ",
+          "operation": "algebra",
+          "expr": "-3*hbar*(x - I*y)**3",
+          "display_ast": "Mul(Integer(-1), Integer(3), Symbol('hbar', positive=True), Pow(Add(Symbol('x', real=True), Mul(Integer(-1), I, Symbol('y', real=True))), Integer(3)))",
+          "latex": "- 3 \\hbar \\left(x - i y\\right)^{3}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mn>3</mn><mo>⁢</mo><mi>hbar</mi><mo>⁢</mo><msup><mrow><mo>(</mo><mrow><mi>x</mi><mo>-</mo><mrow><mi>ⅈ</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo>)</mo></mrow><mn>3</mn></msup></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Read the eigenvalue",
+          "text": "Identify the constant multiplying the original polynomial.",
+          "lhs": "λ",
+          "operation": "algebra",
+          "expr": "-3*hbar",
+          "display_ast": "Mul(Integer(-1), Integer(3), Symbol('hbar', positive=True))",
+          "latex": "- 3 \\hbar",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mn>3</mn><mo>⁢</mo><mi>hbar</mi></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "well-energy",
+      "title": "Energy of a shaped well state",
+      "topic": "Quantum mechanics",
+      "question": "In an infinite well 0 < x < L, a particle of mass m has ψ(x) = N sin³(πx/L), with N > 0. Normalise the state, expand it using φₙ = √(2/L) sin(nπx/L), and calculate ⟨E⟩. You may use sin³θ = (3 sin θ − sin 3θ)/4 and Eₙ = n²π²ℏ²/(2mL²).",
+      "assumptions": "L, m and ℏ are positive. The wavefunction vanishes outside the well. φₙ are orthonormal.",
+      "symbols": {
+        "L": {
+          "positive": true
+        },
+        "m": {
+          "positive": true
+        },
+        "hbar": {
+          "positive": true
+        }
+      },
+      "witnesses": [
+        {
+          "L": "2",
+          "m": "3",
+          "hbar": "1"
+        },
+        {
+          "L": "3",
+          "m": "2",
+          "hbar": "2"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Integrate the density",
+          "text": "Integrate the square of the unnormalised state from 0 to L.",
+          "lhs": "∫₀ᴸ sin⁶(πx/L) dx",
+          "operation": "integration",
+          "expr": "5*L/16",
+          "display_ast": "Mul(Rational(5, 16), Symbol('L', positive=True))",
+          "latex": "\\frac{5 L}{16}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mn>5</mn><mo>⁢</mo><mi>L</mi></mrow><mn>16</mn></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Normalise the wavefunction",
+          "text": "Choose the positive normalisation constant.",
+          "lhs": "N",
+          "operation": "algebra",
+          "expr": "4*sqrt(5)/(5*sqrt(L))",
+          "display_ast": "Mul(Rational(4, 5), Pow(Integer(5), Rational(1, 2)), Pow(Symbol('L', positive=True), Rational(-1, 2)))",
+          "latex": "\\frac{4 \\sqrt{5}}{5 \\sqrt{L}}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mn>4</mn><mo>⁢</mo><msqrt><mn>5</mn></msqrt></mrow><mrow><mn>5</mn><mo>⁢</mo><msqrt><mi>L</mi></msqrt></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Project onto the first mode",
+          "text": "Use the given trigonometric identity and the normalised eigenfunctions to extract c₁.",
+          "lhs": "c₁",
+          "operation": "algebra",
+          "expr": "3*sqrt(10)/10",
+          "display_ast": "Mul(Rational(3, 10), Pow(Integer(10), Rational(1, 2)))",
+          "latex": "\\frac{3 \\sqrt{10}}{10}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mn>3</mn><mo>⁢</mo><msqrt><mn>10</mn></msqrt></mrow><mn>10</mn></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 4,
+          "label": "Project onto the third mode",
+          "text": "Extract c₃ from the same expansion; all other coefficients vanish.",
+          "lhs": "c₃",
+          "operation": "algebra",
+          "expr": "-sqrt(10)/10",
+          "display_ast": "Mul(Integer(-1), Rational(1, 10), Pow(Integer(10), Rational(1, 2)))",
+          "latex": "- \\frac{\\sqrt{10}}{10}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>-</mo><mfrac><msqrt><mn>10</mn></msqrt><mn>10</mn></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Take the energy expectation",
+          "text": "Weight the first and third energy levels by their squared expansion amplitudes.",
+          "lhs": "⟨E⟩",
+          "operation": "algebra",
+          "expr": "9*pi**2*hbar**2/(10*L**2*m)",
+          "display_ast": "Mul(Rational(9, 10), Pow(pi, Integer(2)), Pow(Symbol('L', positive=True), Integer(-2)), Pow(Symbol('hbar', positive=True), Integer(2)), Pow(Symbol('m', positive=True), Integer(-1)))",
+          "latex": "\\frac{9 \\pi^{2} \\hbar^{2}}{10 L^{2} m}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><mn>9</mn><mo>⁢</mo><msup><mi>π</mi><mn>2</mn></msup><mo>⁢</mo><msup><mi>hbar</mi><mn>2</mn></msup></mrow><mrow><mn>10</mn><mo>⁢</mo><msup><mi>L</mi><mn>2</mn></msup><mo>⁢</mo><mi>m</mi></mrow></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    },
+    {
+      "id": "sequential",
+      "title": "Two measurements, one projection",
+      "topic": "Quantum measurement",
+      "question": "In an orthonormal basis |a⟩, |b⟩, |c⟩, prepare |ψ⟩ = (√2|a⟩ + i√3|b⟩ + √5|c⟩)/√10. Measure M = diag(1,1,−1) using the Lüders projection rule. Given outcome +1, find the probability that a subsequent measurement of H = diag(ε,4ε,9ε), ε > 0, returns 4ε. Also find the joint probability of both outcomes.",
+      "assumptions": "Ideal projective measurements; use the Lüders rule within the degenerate M = +1 subspace. ε > 0; no intervening evolution.",
+      "symbols": {
+        "epsilon": {
+          "positive": true
+        }
+      },
+      "witnesses": [
+        {
+          "epsilon": "2"
+        },
+        {
+          "epsilon": "3"
+        }
+      ],
+      "steps": [
+        {
+          "index": 1,
+          "label": "Probability of the first outcome",
+          "text": "Add the populations in the a and b basis states.",
+          "lhs": "P(M = +1)",
+          "operation": "probability",
+          "expr": "1/2",
+          "display_ast": "Rational(1, 2)",
+          "latex": "\\frac{1}{2}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>2</mn></mfrac></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 2,
+          "label": "Renormalise the projection",
+          "text": "Multiply the projected state by the inverse square root of its squared norm.",
+          "lhs": "normalisation multiplier",
+          "operation": "probability",
+          "expr": "sqrt(2)",
+          "display_ast": "Pow(Integer(2), Rational(1, 2))",
+          "latex": "\\sqrt{2}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mn>2</mn></msqrt></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 3,
+          "label": "Conditional b amplitude",
+          "text": "Apply this multiplier to the original b amplitude; the c component is removed.",
+          "lhs": "c′_b",
+          "operation": "probability",
+          "expr": "sqrt(15)*I/5",
+          "display_ast": "Mul(Rational(1, 5), Pow(Integer(15), Rational(1, 2)), I)",
+          "latex": "\\frac{\\sqrt{15} i}{5}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mfrac><mrow><msqrt><mn>15</mn></msqrt><mo>⁢</mo><mi>ⅈ</mi></mrow><mn>5</mn></mfrac></mrow></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 4,
+          "label": "Conditional energy probability",
+          "text": "Take the squared magnitude of the b amplitude after projection.",
+          "lhs": "P(H = 4ε | M = +1)",
+          "operation": "probability",
+          "expr": "3/5",
+          "display_ast": "Rational(3, 5)",
+          "latex": "\\frac{3}{5}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>3</mn><mn>5</mn></mfrac></math>",
+          "mutation_scope": "fixed_claim"
+        },
+        {
+          "index": 5,
+          "label": "Joint probability",
+          "text": "Multiply the first-outcome probability by the conditional energy probability.",
+          "lhs": "P(M = +1, H = 4ε)",
+          "operation": "probability",
+          "expr": "3/10",
+          "display_ast": "Rational(3, 10)",
+          "latex": "\\frac{3}{10}",
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>3</mn><mn>10</mn></mfrac></math>",
+          "mutation_scope": "fixed_claim"
+        }
+      ]
+    }
+  ]
+}

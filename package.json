@@ -1,0 +1,7 @@
+{
+  "name": "blindspot",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Optional preview launcher for the Python application. No Node dependencies.",
+  "scripts": {"dev": "node tools/dev.mjs"}
+}
